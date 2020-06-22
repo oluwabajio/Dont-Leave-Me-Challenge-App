@@ -3,7 +3,7 @@ package dont.leave.me.challenge.dontleavemechallenge.models
 import dont.leave.me.challenge.dontleavemechallenge.R
 import kotlinx.android.synthetic.main.activity_main.view.*
 
-data class Question (var firstWord: Int, var secondWord: Int, var answer: String, var hint:String)
+data class Question(var firstWord: Int, var secondWord: Int, var answer: String, var hint: String)
 
 object Supplier {
     val questions = listOf<Question>(
@@ -126,6 +126,31 @@ object Supplier {
             R.drawable.fanta,
             R.drawable.stick,
             "Fantastic",
+            ""
+        ),
+
+        Question(
+            R.drawable.basket,
+            R.drawable.ball,
+            "Basketball",
+            ""
+        ),
+        Question(
+            R.drawable.foot,
+            R.drawable.ball,
+            "Football",
+            ""
+        ),
+        Question(
+            R.drawable.sun,
+            R.drawable.flower,
+            "Sunflower",
+            ""
+        ),
+        Question(
+            R.drawable.cat,
+            R.drawable.walk,
+            "Catwalk",
             ""
         )
 

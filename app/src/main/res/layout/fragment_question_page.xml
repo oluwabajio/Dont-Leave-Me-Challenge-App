@@ -42,33 +42,35 @@
                         android:gravity="center_horizontal">
 
                         <LinearLayout
+                            android:id="@+id/ly1"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginHorizontal="3dp"
                             android:background="@drawable/ed_image"
                             android:padding="4dp"
-                          >
-                        <ImageView
-                            android:id="@+id/img1"
-                            android:layout_width="@dimen/_110sdp"
-                            android:layout_height="@dimen/_110sdp"
-                            android:scaleType="fitCenter"
-                            tools:src="@drawable/key" />
+                            >
+                            <ImageView
+                                android:id="@+id/img1"
+                                android:layout_width="@dimen/_110sdp"
+                                android:layout_height="@dimen/_110sdp"
+                                android:scaleType="fitCenter"
+                                tools:src="@drawable/key" />
                         </LinearLayout>
                         <LinearLayout
+                            android:id="@+id/ly2"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginHorizontal="3dp"
                             android:padding="4dp"
                             android:background="@drawable/ed_image"
-                           >
-                        <ImageView
-                            android:id="@+id/img2"
-                            android:layout_width="@dimen/_110sdp"
-                            android:layout_height="@dimen/_110sdp"
-                            tools:src="@drawable/stone"
-                            android:scaleType="fitCenter"
-                            />
+                            >
+                            <ImageView
+                                android:id="@+id/img2"
+                                android:layout_width="@dimen/_110sdp"
+                                android:layout_height="@dimen/_110sdp"
+                                tools:src="@drawable/stone"
+                                android:scaleType="fitCenter"
+                                />
                         </LinearLayout>
                     </LinearLayout>
 

@@ -9,6 +9,8 @@ import android.view.View
 import android.view.ViewGroup
 import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
+import com.daimajia.androidanimations.library.Techniques
+import com.daimajia.androidanimations.library.YoYo
 import com.google.android.gms.ads.AdRequest
 import com.google.android.gms.ads.MobileAds
 import com.google.android.material.snackbar.Snackbar
@@ -18,6 +20,7 @@ import dont.leave.me.challenge.dontleavemechallenge.models.Question
 import dont.leave.me.challenge.dontleavemechallenge.models.Supplier
 import dont.leave.me.challenge.dontleavemechallenge.databinding.FragmentQuestionPageBinding
 import dont.leave.me.challenge.dontleavemechallenge.interfaces.btnClicked
+import dont.leave.me.challenge.dontleavemechallenge.utils.AppUtils.utils.hideKeyboard
 
 class QuestionPageFragment(val position: Int) : Fragment() {
     lateinit var binding: FragmentQuestionPageBinding
@@ -35,8 +38,19 @@ class QuestionPageFragment(val position: Int) : Fragment() {
 
         initViews(question);
         initAds()
+
         return view
 
+    }
+
+    override fun onResume() {
+        super.onResume()
+        initAnimations()
+    }
+    private fun initAnimations() {
+        YoYo.with(Techniques.Tada).duration(700).playOn(binding.ly1);
+        YoYo.with(Techniques.Tada).duration(700).playOn(binding.ly2);
+        YoYo.with(Techniques.RubberBand).duration(700).delay(800).playOn(binding.tvYourScore);
     }
 
     private fun initAds() {
@@ -56,13 +70,19 @@ class QuestionPageFragment(val position: Int) : Fragment() {
 
         binding.btnNext.setOnClickListener{
 
-            if (binding.edInput.text.toString().equals(question.answer, ignoreCase = true)) {
+            var inputText: String = binding.edInput.text.toString()
+            inputText = inputText.replace(" ", "")
+            inputText = inputText.replace("-", "")
 
+
+
+            if (inputText.equals(question.answer, ignoreCase = true)) {
+                view?.let { activity?.hideKeyboard(it) }
                 var mainActivity: MainActivity = activity as MainActivity
                 mainActivity.moveNext()
 
             } else {
-                view?.let { activity?.hideKeyboard(it) }
+                YoYo.with(Techniques.Tada).duration(700).repeat(1).playOn(binding.btnNext);
                 showSnackBar("Not Correct!! Try Again")
 
             }
@@ -70,10 +90,10 @@ class QuestionPageFragment(val position: Int) : Fragment() {
 
     }
 
-    fun Context.hideKeyboard(view: View) {
-        val inputMethodManager = getSystemService(Activity.INPUT_METHOD_SERVICE) as InputMethodManager
-        inputMethodManager.hideSoftInputFromWindow(view.windowToken, 0)
-    }
+//    fun Context.hideKeyboard(view: View) {
+//        val inputMethodManager = getSystemService(Activity.INPUT_METHOD_SERVICE) as InputMethodManager
+//        inputMethodManager.hideSoftInputFromWindow(view.windowToken, 0)
+//    }
 
     fun showSnackBar(text: String) {
         Snackbar.make(binding.edInput, text, Snackbar.LENGTH_LONG)
